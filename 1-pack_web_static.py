@@ -1,5 +1,5 @@
 #!/usr/bin/python3
-#Fabric script
+# Fabric script
 
 from fabric.api import local
 from datetime import datetime
@@ -17,7 +17,7 @@ def do_pack():
         time.second
     )
     local('mkdir -p versions')
-    command = local('tar -cvzf' + file + 'web_static')
+    command = local('tar -cvzf ' + file + ' web_static')
     if command.succeeded:
         return file
     return None
