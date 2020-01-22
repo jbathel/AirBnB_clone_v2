@@ -19,13 +19,15 @@ class State(BaseModel, Base):
                               backref="state")
 
     else:
+        name = ''
+
         @property
         def cities(self):
             """
             Returns list of City objects from storage linked to current State
             """
             cities = []
-            for city in models.storage.all(City).values:
+            for city in models.storage.all(models.City).values:
                 if self.id == city.state_id:
                     cities.append(city)
             return cities
