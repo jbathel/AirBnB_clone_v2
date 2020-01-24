@@ -1,6 +1,6 @@
 #!/usr/bin/python3
 """This is the state class"""
-import models
+from models.city import City
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
@@ -19,15 +19,13 @@ class State(BaseModel, Base):
                               backref="state")
 
     else:
-        name = ''
-
         @property
         def cities(self):
             """
             Returns list of City objects from storage linked to current State
             """
             cities = []
-            for city in models.storage.all(models.City).values:
+            for city in models.storage.all(City).values:
                 if self.id == city.state_id:
                     cities.append(city)
             return cities
